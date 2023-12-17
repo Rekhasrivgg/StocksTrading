@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+//Entity class representing the User entity in the database.
 @Entity
 @Table(name = "User_Data")
 public class User {
