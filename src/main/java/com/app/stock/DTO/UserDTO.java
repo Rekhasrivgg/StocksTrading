@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+//Data Transfer Object (DTO) class for User information.
 public class UserDTO {
 
 	private String userName;
