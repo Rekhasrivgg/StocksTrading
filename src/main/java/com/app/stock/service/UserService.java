@@ -25,9 +25,14 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepo;
-
+	//Logger for logging service-related activities
 	public static Logger logger = LoggerFactory.getLogger(UserService.class);
 
+	/* 
+	 * Validate if username is unique
+	 * Create a new user.
+	 * Throws CustomException if the username already exists.
+	 */
 	public User createUser(@Valid UserDTO user) throws CustomException {
 
 		try {
@@ -48,7 +53,10 @@ public class UserService {
 			throw e;
 		}
 	}
-
+	/*
+	 * Delete a user by ID.
+	 * Throws UserNotFoundException if the user with the given ID is not found.
+	 */
 	public void deleteUser(long id) throws UserNotFound {
 		try {
 			logger.info("Deleting user with ID: {}", id);
@@ -62,7 +70,11 @@ public class UserService {
 		}
 
 	}
-
+	/*
+	 * Log in a user with the provided credentials.
+	 * Throws UserNotFoundException if the user is not found.
+	 * Throws PasswordMissmatchException if the password doesn't match.
+	 */
 	public User loginUser(@Valid UserDTOLogin userLog) throws UserNotFound, PasswordMissmatchException {
 		try {
 			logger.info("Logging in user with email: {}", userLog.getUserEmail());
@@ -81,7 +93,10 @@ public class UserService {
 			throw e;
 		}
 	}
-
+	/*
+	 * Update an existing user by ID.
+	 * Throws UserNotFoundException if the user with the given ID is not found.
+	 */
 	public User updateUser(@Valid Long id, UserDTO user) throws UserNotFound {
 
 		try {
@@ -102,6 +117,10 @@ public class UserService {
 		}
 	}
 
+	/*
+	 * Retrieve a user by ID.
+	 * Throws UserNotFoundException if the user with the given ID is not found.
+	 */
 	public User getUserById(long id) throws UserNotFound {
 		try {
 			logger.info("Fetching user with ID: {}", id);
@@ -113,7 +132,7 @@ public class UserService {
 			throw e;
 		}
 	}
-
+	//Retrieve all users.
 	public List<User> getAllUsers() {
 		logger.info("Fetched all users successfully");
 		return userRepo.findAll();
